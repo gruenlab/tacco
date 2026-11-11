@@ -16,7 +16,7 @@ maintainers = [
 ]
 readme = "README.md"
 license = {file = "LICENCE.txt"}
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 
 classifiers = [
     "License :: OSI Approved :: BSD License",
@@ -70,7 +70,8 @@ doc = [
   "jupyter",
 ]
 
-benchmark = ["time"]
+# Benchmarking uses the system `time` executable, not a Python package.
+benchmark = []
 
 test = ["pytest"]
 

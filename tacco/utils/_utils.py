@@ -274,7 +274,7 @@ def _run_OT(type_cell_dist, type_prior=None, cell_prior=None, epsilon=5e-3, lamb
         q = cell_prior[cells] / cell_prior.sum()
         q = q.to_numpy()
     
-    cost = type_cell_dist.loc[types].to_numpy().T
+    cost = type_cell_dist.loc[types].to_numpy(copy=True).T.copy()
     cost /= cost.max()
     
     C = solve_OT(q, p, cost, epsilon, lambda_b=lamb, inplace=inplace)

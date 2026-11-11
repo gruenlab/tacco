@@ -2,6 +2,16 @@
 
 TACCO is a python framework for working with categorical and compositional annotations for high-dimensional observations, in particular for transferring annotations from single cell to spatial transcriptomics data. TACCO comes with an extensive ever expanding [documentation](https://simonwm.github.io/tacco/) and a set of [example notebooks](https://github.com/simonwm/tacco_examples). If TACCO is useful for your research, you can cite [Nat Biotechnol (2023)](https://doi.org/10.1038/s41587-023-01657-3).
 
+## Fork and changes
+
+This repository was forked from [`simonwm/tacco`](https://github.com/simonwm/tacco) at commit [`05d6fc4837e7c9e07e3267d97abd32a7d408254d`](https://github.com/simonwm/tacco/commit/05d6fc4837e7c9e07e3267d97abd32a7d408254d) (`Fixed docs build`).
+
+The changes in this fork address a `ValueError: output array is read-only` raised when code tried to mutate array data in place. The affected arrays were read-only, so explicit copies are now made before in-place mutation:
+
+- `tacco/utils/_utils.py`: copy the cost array before normalizing it in place.
+- `tacco/preprocessing/_qc.py`: copy the arrays used to build gene profiles before applying in-place regularization.
+
+
 ## How to install TACCO
 
 ### Conda

@@ -244,8 +244,8 @@ def filter_reference_genes(
     
     profiles = adata.varm[annotation_key]
     
-    profiles = profiles / profiles.sum(axis=0).to_numpy()
-    profiles = profiles.to_numpy()
+    profiles = profiles / profiles.sum(axis=0).to_numpy(copy=True)
+    profiles = profiles.to_numpy(copy=True)
     
     profiles += 1e-30 # regularization for numerical reasons
     
