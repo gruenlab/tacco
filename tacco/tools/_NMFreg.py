@@ -187,7 +187,10 @@ def annotate_NMFreg(
         barcode_clusters['barcode'] = Hs_norm['barcode']
         barcode_clusters['max_factor'] = maxloc_s
 
-        barcode_clusters['atlas_cluster'] = barcode_clusters['barcode']
+        # Keep this column integer-typed: each barcode is assigned an atlas
+        # cluster below, and newer pandas versions reject assigning integers
+        # into a string column.
+        barcode_clusters['atlas_cluster'] = barcode_clusters['max_factor']
 
         for c in range(1, num_atlas_clusters + 1):
             condition = np.isin(barcode_clusters['max_factor'], 
